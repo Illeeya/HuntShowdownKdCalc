@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31829.152
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDHelper", "KDHelper\KDHelper.csproj", "{2CA54583-3587-4ED2-B4AB-7F3CAD736433}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CA54583-3587-4ED2-B4AB-7F3CAD736433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA54583-3587-4ED2-B4AB-7F3CAD736433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA54583-3587-4ED2-B4AB-7F3CAD736433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA54583-3587-4ED2-B4AB-7F3CAD736433}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6E3A30D-C6C0-4946-92F2-120843CC6858}
+	EndGlobalSection
+EndGlobal

@@ -214,6 +214,7 @@ namespace KDHelper
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
             ((System.ComponentModel.ISupportInitialize)(this.deathsInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.killsInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.desiredKdInput)).EndInit();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,18 +13,35 @@ namespace KDHelper
 {
     public partial class Form1 : Form
     {
+        //decimal kills;
+        //decimal deaths;
+        //decimal desiredKd;
         public Form1()
         {
             InitializeComponent();
+            killsInput.Value = decimal.Parse(ConfigurationManager.AppSettings["kills"]);
+            deathsInput.Value = decimal.Parse(ConfigurationManager.AppSettings["deaths"]);
+            desiredKdInput.Value = decimal.Parse(ConfigurationManager.AppSettings["desiredKd"]);
+            currentKdCalculate();
+            desiredKdCalculate();
         }
 
-        private void currentKdBtn_Click(object sender, EventArgs e)
+        private void currentKdBtn_Click(object sender, System.EventArgs e)
+        {
+            currentKdCalculate();
+        }
+        private void desiredKdBtn_Click(object sender, System.EventArgs e)
+        {
+            desiredKdCalculate();
+        }
+
+        void currentKdCalculate()
         {
             try
             {
                 currentKdValueLbl.Text = (killsInput.Value / deathsInput.Value).ToString("0.00");
             }
-            catch(DivideByZeroException ex)
+            catch (DivideByZeroException ex)
             {
                 currentKdValueLbl.Text = "Never died";
             }
@@ -33,11 +51,8 @@ namespace KDHelper
             }
         }
 
-        private void desiredKdBtn_Click(object sender, EventArgs e)
+        void desiredKdCalculate()
         {
-            
-            
-
             if (deathsInput.Value == 0)
             {
                 killsNeededValueLbl.Text = "Never died";
@@ -61,7 +76,7 @@ namespace KDHelper
                     try
                     {
                         decimal kdn = ckd > dkd ? Math.Ceiling(killsInput.Value / dkd) : Math.Ceiling(deathsInput.Value * desiredKdInput.Value);
-                        killsNeededValueLbl.Text = ckd > dkd ? kdn.ToString() + $" (+{kdn-deathsInput.Value})" : kdn.ToString() + $" (+{kdn - killsInput.Value})";
+                        killsNeededValueLbl.Text = ckd > dkd ? kdn.ToString() + $" (+{kdn - deathsInput.Value})" : kdn.ToString() + $" (+{kdn - killsInput.Value})";
                     }
                     catch
                     {
@@ -69,6 +84,19 @@ namespace KDHelper
                     }
                 }
             }
+        }
+
+        private void Form1_Closing(object sender, FormClosingEventArgs e)
+        {
+
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings.Remove("kills");
+            config.AppSettings.Settings.Remove("deaths");
+            config.AppSettings.Settings.Remove("desiredKd");
+            config.AppSettings.Settings.Add("kills", killsInput.Value.ToString());
+            config.AppSettings.Settings.Add("deaths", deathsInput.Value.ToString());
+            config.AppSettings.Settings.Add("desiredKd", desiredKdInput.Value.ToString());
+            config.Save(ConfigurationSaveMode.Modified);
         }
     }
 }
